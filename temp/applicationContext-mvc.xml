@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+
+    <!-- 组件扫描(@Service @Repository() @Component() @Controller()) 交由Spring容器管理 -->
+    <context:component-scan
+        base-package="com.copy4dev.sshBase.service"
+        use-default-filters="false">
+        <!-- 扫描指定注解的Bean(@Service), 扫描到后交由Spring容器管理 -->
+        <context:include-filter
+            type="annotation"
+            expression="org.springframework.stereotype.Service" />
+        <context:include-filter
+            type="annotation"
+            expression="org.springframework.stereotype.Component" />
+    </context:component-scan>
+
+    <!-- 数据源配置文件 默认根路径下c3p0.properties -->
+    <bean
+        id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:c3p0.properties</value>
+        </property>
+    </bean>
+
+    <!-- 数据源 -->
+    <bean
+        id="dataSource"
+        class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close">
+        <property
+            name="jdbcUrl"
+            value="${c3p0.jdbcUrl}" />
+        <property
+            name="driverClass"
+            value="${c3p0.driverClass}" />
+        <property
+            name="user"
+            value="${c3p0.user}" />
+        <property
+            name="password"
+            value="${c3p0.password}" />
+    </bean>
+
+    <!-- 配置sessionFactory 从xml文件中读取配置 -->
+    <bean
+        id="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <!-- 引用数据源 -->
+        <property
+            name="dataSource"
+            ref="dataSource"></property>
+        <!-- 配置hierbnet -->
+        <property
+            name="configLocation"
+            value="classpath:hibernate.cfg.xml"></property>
+        <!-- 映射文件 -->
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:com/copy4dev/sshBase/hbm/*.hbm.xml</value>
+                <value>classpath:com/copy4dev/sshBase/hbm/*/*.hbm.xml</value>
+                <value>classpath:com/copy4dev/sshBase/hbm/*/*/*.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置事务 -->
+    <bean
+        id="transactionManager"
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property
+            name="sessionFactory"
+            ref="sessionFactory" />
+    </bean>
+
+    <!-- 切面 -->
+    <tx:advice
+        id="txadvice"
+        transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method
+                name="add*"
+                propagation="REQUIRED"
+                rollback-for="Exception" />
+            <tx:method
+                name="del*"
+                propagation="REQUIRED"
+                no-rollback-for="MyException" />
+            <tx:method
+                name="update*"
+                propagation="REQUIRED" />
+            <tx:method
+                name="save*"
+                propagation="REQUIRED" />
+            <tx:method
+                name="insert*"
+                propagation="REQUIRED" />
+            <tx:method
+                name="*"
+                propagation="REQUIRED"
+                read-only="true" />
+            <tx:method
+                name="insert*"
+                propagation="REQUIRED"
+                rollback-for="Exception" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!-- 如com.base.www.service.impl.manage.system.UserSErviceImpl -->
+        <aop:pointcut
+            id="daoMethods"
+            expression="execution(* com.copy4dev.sshBase.service.*.*.*.*.*(..))" />
+        <aop:advisor
+            advice-ref="txadvice"
+            pointcut-ref="daoMethods" />
+    </aop:config>
+
+
+
+</beans>  

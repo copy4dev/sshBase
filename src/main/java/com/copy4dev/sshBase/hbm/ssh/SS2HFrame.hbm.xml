@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!--name = 实体类的包名.类名 table=数据库的表名 -->
+<!-- 	<class name="com.base.www.vo.ss2h.SS2H" table="t_ss2h" -->
+<!-- 		lazy="true"> -->
+
+<!-- 		<cache usage="read-write" /> -->
+		<!-- name对应实体类的属性id -->
+<!-- 		<id name="id" type="java.lang.Integer" length="5"> -->
+<!-- 			<column name="id"></column> -->
+<!-- 			<generator class="native"></generator> -->
+<!-- 		</id> -->
+
+<!-- 		<property name="password" column="password" type="java.lang.String" -->
+<!-- 			length="16" /> -->
+
+<!-- 	</class> -->
+</hibernate-mapping>    
+    
