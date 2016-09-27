@@ -4,27 +4,26 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
-	<!-- 动态方法 -->
-<!-- 	<constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
-	<!-- 开发模式 -->
-<!-- 	<constant name="struts.devMode" value="true" /> -->
-	<!-- 扩展后缀 -->
-<!-- 	<constant name="struts.action.extension" value="action,jspx,do" /> -->
-	
-	<!-- 最上层package -->
-<!-- 	<package name="ss2h" namespace="/" extends="struts-default"> -->
-<!-- 		<global-results> -->
-			<!-- 出错页面跳转 -->
-<!-- 			<result name="error">/error.jsp</result> -->
-<!-- 		</global-results> -->
+    <!-- 动态方法 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- 开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 扩展后缀 -->
+    <constant name="struts.action.extension" value="action,jspx,do" />
 
-<!-- 		<global-exception-mappings> -->
-<!-- 			<exception-mapping exception="java.lang.Exception" -->
-<!-- 				result="error" /> -->
-<!-- 		</global-exception-mappings> -->
-<!-- 	</package> -->
+    <!-- 最上层package -->
+    <package name="ss2h" namespace="/" extends="struts-default">
+        <global-results>
+            <!-- 出错页面跳转 -->
+            <!-- <result name="error">/error.jsp</result> -->
+        </global-results>
 
-	<!-- 引用子系统的Struts2的配置文件 -->
-<!-- 	<include file="com/base/www/action/ss2h/struts-ss2h.xml" /> -->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings>
+    </package>
+
+    <!-- 引用子系统的Struts2的配置文件 -->
+    <include file="com/copy4dev/sshBase/action/ssh/struts-ssh.xml" />
 
 </struts>  

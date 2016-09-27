@@ -53,6 +53,8 @@
 
         <!-- hibernate 相关 -->
         <hibernate.version>3.3.2.GA</hibernate.version>
+        <ehcache.version>2.8.5</ehcache.version>
+        <ehcache.code.version>2.6.6</ehcache.code.version>
         <cglib.version>2.2</cglib.version>
 
         <!-- jdbc -->
@@ -97,6 +99,17 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+        <!-- ehcache包 hibernate 缓存用 -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>${ehcache.code.version}</version>
         </dependency>
         <!-- 扩展Java 类与实现Java 接口 -->
         <dependency>

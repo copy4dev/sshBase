@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+
+	<!-- http://localhost:8080/base/test/*.action -->
+	<package name="test" namespace="/test" extends="json-default,ss2h">
+
+		<action name="ssh_jump" class="com.copy4dev.sshBase.action.ssh.UserTestAction"
+			method="jump">
+			<result>/index.jsp</result>
+		</action>
+
+		<!--josn测试 -->
+<!-- 		<action name="ss2h_josn" class="com.base.www.action.ss2h.SS2HAction" -->
+<!-- 			method="getJSON"> -->
+<!-- 			<result type="json"> -->
+<!-- 				<param name="root">jsonResult</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+
+	</package>
+
+</struts>
