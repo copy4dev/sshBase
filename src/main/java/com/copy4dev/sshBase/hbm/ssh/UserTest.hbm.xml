@@ -13,7 +13,7 @@
         </id>
         <property name="name" column="name" type="java.lang.String" length="50" />
         <property name="password" column="password" type="java.lang.String" length="50" />
-        <property name="remarks" column=""remarks"" type="java.lang.String" length="500" />
+        <property name="remarks" column="remarks" type="java.lang.String" length="500" />
     </class>
 </hibernate-mapping>    
     

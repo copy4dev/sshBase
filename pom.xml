@@ -1,6 +1,4 @@
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -41,8 +39,9 @@
 
         <!-- 统一字符集编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- JDK版本 -->
+        <!-- maven插件 -->
         <jdk.version>1.7</jdk.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
         <!-- spring 相关 -->
         <springframework.version>4.0.6.RELEASE</springframework.version>
@@ -102,15 +101,20 @@
         </dependency>
         <!-- ehcache包 hibernate 缓存用 -->
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>${ehcache.version}</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>${ehcache.code.version}</version>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>net.sf.ehcache</groupId> -->
+<!--             <artifactId>ehcache</artifactId> -->
+<!--             <version>${ehcache.version}</version> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>net.sf.ehcache</groupId> -->
+<!--             <artifactId>ehcache-core</artifactId> -->
+<!--             <version>${ehcache.code.version}</version> -->
+<!--         </dependency> -->
         <!-- 扩展Java 类与实现Java 接口 -->
         <dependency>
             <groupId>cglib</groupId>
@@ -158,6 +162,11 @@
             <version>${springframework.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- spring3 可选的依赖注入，不可缺少 -->
         <dependency>
@@ -223,6 +232,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>

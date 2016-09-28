@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC
 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    
 <hibernate-configuration>
 
 	<!-- 配置hiberante3的属性 -->
@@ -16,10 +17,10 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- 配置当前Session的上下文 -->
 		<property name="hibernate.current_session_context_class">org.springframework.orm.hibernate3.SpringSessionContext</property>
-		<!-- 开启二级缓存 -->
-		<property name="hibernate.cache.use_second_level_cache">true</property>
 		<!-- 开启查询缓存 -->
 		<property name="hibernate.cache.use_query_cache">true</property>
+		<!-- 开启二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
 		<!-- 指定二级缓存提供商 -->
 		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
 		<!-- 指定缓存配置文件位置 -->
