@@ -18,6 +18,10 @@ public class UserTestDaoImpl extends HibernateDaoImpl implements IUserTestDao {
 			return findUniqueEntity(hql.toString());
 		}
 		return null;
+		
+		
+		
+		
 
 	}
 

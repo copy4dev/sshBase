@@ -8,3 +8,6 @@ public interface IUserTestDao extends IHibernateDao {
 	public UserTest findByName(String name);
 
 }
+
+
+

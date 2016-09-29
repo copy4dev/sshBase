@@ -7,6 +7,8 @@ import com.copy4dev.sshBase.vo.ssh.UserTest;
 
 public class UserTestAction extends BaseAction<UserTest> {
 
+	
+	
 	/**
 	 * 序列化id
 	 */
