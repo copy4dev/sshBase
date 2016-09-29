@@ -14,18 +14,37 @@
         </property>
     </bean>
 
-    <!-- 数据源 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="jdbcUrl" value="${c3p0.jdbcUrl}" />
-        <property name="driverClass" value="${c3p0.driverClass}" />
-        <property name="user" value="${c3p0.user}" />
-        <property name="password" value="${c3p0.password}" />
+    <!-- 默认数据源 -->
+    <bean id="defDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="jdbcUrl" value="${c3p1.jdbcUrl}" />
+        <property name="driverClass" value="${c3p1.driverClass}" />
+        <property name="user" value="${c3p1.user}" />
+        <property name="password" value="${c3p1.password}" />
+    </bean>
+    
+    <!-- 第二数据源 -->
+    <bean id="2ndDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="jdbcUrl" value="${c3p2.jdbcUrl}" />
+        <property name="driverClass" value="${c3p2.driverClass}" />
+        <property name="user" value="${c3p2.user}" />
+        <property name="password" value="${c3p2.password}" />
+    </bean>
+    
+    <!-- 动态数据源 -->
+    <bean id="dynamicDataSource" class="com.copy4dev.sshBase.db.DynamicDataSource">
+        <property name="defaultTargetDataSource" ref="defDataSource"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="defDataSource" value-ref="defDataSource"/>
+                <!-- <entry key="dataSource2" value-ref="dataSource2"/> -->
+            </map>
+        </property>
     </bean>
 
     <!-- 配置sessionFactory 从xml文件中读取配置 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <!-- 引用数据源 -->
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dynamicDataSource"></property>
         <!-- 配置hierbnet -->
         <property name="configLocation" value="classpath:baseconfig/hibernate.cfg.xml"></property>
         <!-- 映射文件 -->

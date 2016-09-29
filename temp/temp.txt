@@ -48,3 +48,9 @@ properties
         </jsp-property-group>
     </jsp-config>
 
+
+DynamicDataSource.setCurrentLookupKey("dataSource2");//切换数据源dataSource2，默认数据源dataSource
+
+List<BmsItem> itemList = bmsItemService.findAllListByYizhu();
+
+DynamicDataSource.setCurrentLookupKey("dataSource"); //切换回来

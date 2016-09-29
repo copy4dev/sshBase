@@ -2,13 +2,12 @@ package com.copy4dev.sshBase.action.ssh;
 
 import com.alibaba.fastjson.JSONObject;
 import com.copy4dev.sshBase.action.base.BaseAction;
+import com.copy4dev.sshBase.db.DynamicDataSource;
 import com.copy4dev.sshBase.service.ssh.IUserTestService;
 import com.copy4dev.sshBase.vo.ssh.UserTest;
 
 public class UserTestAction extends BaseAction<UserTest> {
 
-	
-	
 	/**
 	 * 序列化id
 	 */
@@ -33,15 +32,29 @@ public class UserTestAction extends BaseAction<UserTest> {
 	public String getJSON() {
 
 		try {
-//			UserTest userTest = userTestService.findByName("root");
 			UserTest userTest = userTestService.get(UserTest.class, 1);
 			jsonResult = JSONObject.toJSON(userTest);
-			System.out.println("json: " + jsonResult.toString());
+			// 数据源切换测试
+			changeDB();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return SUCCESS;
+	}
+
+	/**
+	 * 数据源切换测试
+	 */
+	private void changeDB() {
+		// 切换数据源2ndDataSource
+		DynamicDataSource.setCurrentLookupKey("2ndDataSource");
+
+		UserTest userTest = userTestService.findByName("admin");
+		System.out.println("json: " + JSONObject.toJSON(userTest).toString());
+
+		// 切换默认数据源defDataSource回来
+		DynamicDataSource.setCurrentLookupKey("defDataSource");
 	}
 
 	// --- set and get ---
