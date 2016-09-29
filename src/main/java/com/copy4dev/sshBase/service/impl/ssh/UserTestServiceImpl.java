@@ -19,7 +19,7 @@ public class UserTestServiceImpl implements IUserTestService {
 	@Override
 	public UserTest get(Class<UserTest> entityClass, Serializable id) {
 		// TODO Auto-generated method stub
-		return null;
+		return userTestDao.get(entityClass, id);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class UserTestServiceImpl implements IUserTestService {
 	// --- user define ---
 	
 	@Override
-	public UserTest getById(Integer id) {
-		return userTestDao.get(UserTest.class, id);
+	public UserTest findByName(String name) {
+		return userTestDao.findByName(name);
 	}
 
 	// --- set and get ---

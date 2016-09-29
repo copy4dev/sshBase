@@ -16,6 +16,6 @@ public interface IUserTestService extends IBaseService<UserTest> {
 	 * @param id
 	 * @return
 	 */
-	UserTest getById(Integer id);
+	UserTest findByName(String name);
 
 }

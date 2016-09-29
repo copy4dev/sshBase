@@ -12,7 +12,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 	 */
 	private static final long serialVersionUID = -671660989292087304L;
 
-	private IUserTestService ss2hService;
+	private IUserTestService userTestService;
 
 	/**
 	 * 页面跳转测试
@@ -31,9 +31,10 @@ public class UserTestAction extends BaseAction<UserTest> {
 	public String getJSON() {
 
 		try {
-			UserTest userTest = ss2hService.getById(1);
+//			UserTest userTest = userTestService.findByName("root");
+			UserTest userTest = userTestService.get(UserTest.class, 1);
 			jsonResult = JSONObject.toJSON(userTest);
-			System.out.println(jsonResult.toString());
+			System.out.println("json: " + jsonResult.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,12 +44,12 @@ public class UserTestAction extends BaseAction<UserTest> {
 
 	// --- set and get ---
 
-	public IUserTestService getSs2hService() {
-		return ss2hService;
+	public IUserTestService getUserTestService() {
+		return userTestService;
 	}
 
-	public void setSs2hService(IUserTestService ss2hService) {
-		this.ss2hService = ss2hService;
+	public void setUserTestService(IUserTestService userTestService) {
+		this.userTestService = userTestService;
 	}
 
 }

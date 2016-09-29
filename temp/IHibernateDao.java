@@ -196,6 +196,17 @@ public interface IHibernateDao {
 	public Integer count(String hql, Object... obj);
 
 	/**
+	 * 多条件分页查询
+	 * @param queryString HQL语句
+	 * @param startRow 开始行数
+	 * @param pageSize 页数
+	 * @param params 参数集合
+	 * @return 分页查询结果
+	 * @see #findByPage(String, Integer, Integer, Object...)
+	 */
+//	public <T> List<T> findByPage(String queryString, PageModel pageModel, List<?> params);
+
+	/**
 	 * in查询语句
 	 */
 	public <T> List<?> findByIn(String hql, Map<String, Object> values);

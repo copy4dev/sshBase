@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 测试:用户类
+ * 
  * @author Admin
  * @version 2016年9月27日
  *
@@ -13,14 +14,14 @@ public class UserTest implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6455485276828167508L;
+	private static final long serialVersionUID = -3132884624885506255L;
 
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String password;
-	
+
 	private String remarks;
 
 	public Integer getId() {
