@@ -65,6 +65,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<junit.version>3.8.1</junit.version>
 		<servlet-api.version>2.5</servlet-api.version>
+		<fastjson.version>1.2.7</fastjson.version>
 
 	</properties>
 
@@ -184,12 +185,17 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- 运用Log4j 必须用到这个包 -->
+		<!-- Log4j 支援包 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<!-- log4j 日志包 -->
 		<dependency>
@@ -204,6 +210,12 @@
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet-api.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<!-- json相关 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
 		</dependency>
 		<!-- tools end -->
 

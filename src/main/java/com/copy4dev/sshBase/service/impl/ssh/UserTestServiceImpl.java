@@ -34,10 +34,11 @@ public class UserTestServiceImpl implements IUserTestService {
 
 	}
 
+	// --- user define ---
+	
 	@Override
 	public UserTest getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userTestDao.get(UserTest.class, id);
 	}
 
 	// --- set and get ---

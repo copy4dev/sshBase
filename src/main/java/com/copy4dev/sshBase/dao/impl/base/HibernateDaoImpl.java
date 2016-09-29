@@ -21,7 +21,6 @@ import org.springframework.util.ObjectUtils;
 
 import com.copy4dev.sshBase.dao.base.IHibernateDao;
 
-
 /**
  * 
  * @author Admin
@@ -29,27 +28,22 @@ import com.copy4dev.sshBase.dao.base.IHibernateDao;
  *
  */
 @SuppressWarnings("unchecked")
-public class HibernateDaoImpl extends HibernateDaoSupport implements
-		IHibernateDao {
+public class HibernateDaoImpl extends HibernateDaoSupport implements IHibernateDao {
 	/**
 	 * 统计总条数
 	 * 
-	 * @param hql
-	 *            查询语句
+	 * @param hql 查询语句
 	 */
 	@Override
 	public Integer count(final String hql) {
 		if (StringUtils.isEmpty(hql)) {
 			throw new IllegalStateException("hql is null");
 		}
-		Object result = this.getHibernateTemplate().execute(
-				new HibernateCallback<Object>() {
-					public Object doInHibernate(Session session)
-							throws HibernateException, SQLException {
-						return session.createQuery(hql).setCacheable(true)
-								.uniqueResult();
-					}
-				});
+		Object result = this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				return session.createQuery(hql).setCacheable(true).uniqueResult();
+			}
+		});
 		return ((Long) result).intValue();
 	}
 
@@ -86,18 +80,16 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 			if (StringUtils.isEmpty(hql)) {
 				throw new IllegalStateException("hql is null");
 			}
-			Object result = this.getHibernateTemplate().execute(
-					new HibernateCallback<Object>() {
+			Object result = this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
-						public Object doInHibernate(Session session)
-								throws HibernateException, SQLException {
-							Query query = session.createQuery(hql);
-							for (int i = 0; i < obj.length; i++) {
-								query.setParameter(i, obj[i]);
-							}
-							return query.uniqueResult();
-						}
-					});
+				public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					Query query = session.createQuery(hql);
+					for (int i = 0; i < obj.length; i++) {
+						query.setParameter(i, obj[i]);
+					}
+					return query.uniqueResult();
+				}
+			});
 			return ((Long) result).intValue();
 		}
 	}
@@ -164,40 +156,33 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 获取唯一实体
 	 * 
-	 * @param queryString
-	 *            HQL query string
-	 * @param params
-	 *            query object array params
+	 * @param queryString HQL query string
+	 * @param params query object array params
 	 * @return unique object
 	 * @see org.hibernate#Session
-	 * @throws java.lang.IllegalArgumentException
-	 *             if queryString is null
+	 * @throws java.lang.IllegalArgumentException if queryString is null
 	 */
 	@Override
-	public <T> T findUniqueEntity(final String queryString,
-			final Object... params) {
+	public <T> T findUniqueEntity(final String queryString, final Object... params) {
 		if (StringUtils.isEmpty(queryString)) {
 			throw new IllegalStateException("queryString is null");
 		}
 		if (ObjectUtils.isEmpty(params)) {
-			return (T) getHibernateTemplate().execute(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session) {
-							return session.createQuery(queryString)
-									.uniqueResult();
-						}
-					});
+			return (T) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) {
+					return session.createQuery(queryString).uniqueResult();
+				}
+			});
 		} else {
-			return (T) getHibernateTemplate().execute(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session) {
-							Query query = session.createQuery(queryString);
-							for (int i = 0; i < params.length; i++) {
-								query.setParameter(i, params[i]);
-							}
-							return query.uniqueResult();
-						}
-					});
+			return (T) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) {
+					Query query = session.createQuery(queryString);
+					for (int i = 0; i < params.length; i++) {
+						query.setParameter(i, params[i]);
+					}
+					return query.uniqueResult();
+				}
+			});
 		}
 	}
 
@@ -225,54 +210,42 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 		if (ObjectUtils.isEmpty(values)) {
 			return this.findByNamedQuery(queryName);
 		}
-		return (List<T>) getHibernateTemplate().findByNamedQuery(queryName,
-				values);
+		return (List<T>) getHibernateTemplate().findByNamedQuery(queryName, values);
 	}
 
 	/**
 	 * 多条件分页查询
 	 * 
-	 * @param hql
-	 *            query string
-	 * @param startRow
-	 *            begin row
-	 * @param pageSize
-	 *            page number
-	 * @param params
-	 *            query object params array
+	 * @param hql query string
+	 * @param startRow begin row
+	 * @param pageSize page number
+	 * @param params query object params array
 	 * @return the query list<?> result
 	 * @see org.hibernate#Session
-	 * @throws java.lang.IllegalArgumentException
-	 *             if queryString is null
+	 * @throws java.lang.IllegalArgumentException if queryString is null
 	 */
 	@SuppressWarnings("deprecation")
 	@Override
-	public <T> List<?> findByPage(final String hql, final Integer startRow,
-			final Integer pageSize, final Object... params) {
+	public <T> List<?> findByPage(final String hql, final Integer startRow, final Integer pageSize, final Object... params) {
 		if (StringUtils.isEmpty(hql)) {
 			throw new IllegalStateException("hql is null");
 		}
 		if (ObjectUtils.isEmpty(params)) {
-			return getHibernateTemplate().executeFind(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session) {
-							return session.createQuery(hql).setCacheable(true)
-									.setFirstResult(startRow)
-									.setMaxResults(pageSize).list();
-						}
-					});
+			return getHibernateTemplate().executeFind(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) {
+					return session.createQuery(hql).setCacheable(true).setFirstResult(startRow).setMaxResults(pageSize).list();
+				}
+			});
 		} else {
-			return getHibernateTemplate().executeFind(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session) {
-							Query query = session.createQuery(hql);
-							for (int i = 0; i < params.length; i++) {
-								query.setParameter(i, params[i]);
-							}
-							return query.setFirstResult(startRow)
-									.setMaxResults(pageSize).list();
-						}
-					});
+			return getHibernateTemplate().executeFind(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) {
+					Query query = session.createQuery(hql);
+					for (int i = 0; i < params.length; i++) {
+						query.setParameter(i, params[i]);
+					}
+					return query.setFirstResult(startRow).setMaxResults(pageSize).list();
+				}
+			});
 		}
 	}
 
@@ -294,8 +267,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 
 	@Override
 	public <T> Iterator<T> iterate(String queryString, Object... values) {
-		return (Iterator<T>) getHibernateTemplate()
-				.iterate(queryString, values);
+		return (Iterator<T>) getHibernateTemplate().iterate(queryString, values);
 	}
 
 	/**
@@ -323,8 +295,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	 * 保存
 	 * 
 	 * @param entities
-	 * @throws java.lang.IllegalArgumentException
-	 *             if entity is null
+	 * @throws java.lang.IllegalArgumentException if entity is null
 	 */
 	@Override
 	public <T> Serializable save(T entity) {
@@ -368,8 +339,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	 * 修改所有的实体
 	 * 
 	 * @param entities
-	 * @throws java.lang.IllegalArgumentException
-	 *             if entities is null
+	 * @throws java.lang.IllegalArgumentException if entities is null
 	 */
 	@Override
 	public <T> void updateAll(Collection<T> entities) {
@@ -391,8 +361,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	 * 保存所有的实体
 	 * 
 	 * @param entities
-	 * @throws java.lang.IllegalArgumentException
-	 *             if entities is null
+	 * @throws java.lang.IllegalArgumentException if entities is null
 	 */
 	@Override
 	public <T> void saveAll(Collection<T> entities) {
@@ -413,55 +382,41 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * in查询语句
 	 */
-	public <T> List<?> findByIn(final String hql,
-			final Map<String, Object> values) {
+	public <T> List<?> findByIn(final String hql, final Map<String, Object> values) {
 		if (StringUtils.isEmpty(hql)) {
 			throw new IllegalStateException("queryString is null");
 		}
 
 		if (values == null || values.size() <= 0) {
-			return (List<?>) getHibernateTemplate().execute(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session) {
-							Long ids[] = new Long[] { 1L, 2L, 3L };
-							return session.createQuery(hql)
-									.setParameter("ids", new Object[] { ids })
-									.list();
-						}
-					});
+			return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) {
+					Long ids[] = new Long[] { 1L, 2L, 3L };
+					return session.createQuery(hql).setParameter("ids", new Object[] { ids }).list();
+				}
+			});
 		} else {
 			Set<String> keySet = values.keySet();
 			for (final String string : keySet) {
 				final Object obj = values.get(string);
 				// 这里考虑传入的参数是什么类型，不同类型使用的方法不同
 				if (obj instanceof Collection<?>) {
-					return (List<?>) getHibernateTemplate().execute(
-							new HibernateCallback<Object>() {
-								public Object doInHibernate(Session session) {
-									return session
-											.createQuery(hql)
-											.setParameterList(string,
-													(Collection<?>) obj).list();
-								}
-							});
+					return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+						public Object doInHibernate(Session session) {
+							return session.createQuery(hql).setParameterList(string, (Collection<?>) obj).list();
+						}
+					});
 				} else if (obj instanceof Object[]) {
-					return (List<?>) getHibernateTemplate().execute(
-							new HibernateCallback<Object>() {
-								public Object doInHibernate(Session session) {
-									return session
-											.createQuery(hql)
-											.setParameterList(string,
-													(Object[]) obj).list();
-								}
-							});
+					return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+						public Object doInHibernate(Session session) {
+							return session.createQuery(hql).setParameterList(string, (Object[]) obj).list();
+						}
+					});
 				} else {
-					return (List<?>) getHibernateTemplate().execute(
-							new HibernateCallback<Object>() {
-								public Object doInHibernate(Session session) {
-									return session.createQuery(hql)
-											.setParameter(string, obj).list();
-								}
-							});
+					return (List<?>) getHibernateTemplate().execute(new HibernateCallback<Object>() {
+						public Object doInHibernate(Session session) {
+							return session.createQuery(hql).setParameter(string, obj).list();
+						}
+					});
 				}
 			}
 
@@ -472,12 +427,9 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 多条件分页查询
 	 * 
-	 * @param queryString
-	 *            HQL语句
-	 * @param pageModel
-	 *            分页实体
-	 * @param params
-	 *            参数集合，没有参数可为NULL
+	 * @param queryString HQL语句
+	 * @param pageModel 分页实体
+	 * @param params 参数集合，没有参数可为NULL
 	 * @return 分页查询后集合对象
 	 * @see #findByPage(String, Integer, Integer, List)
 	 */
@@ -506,8 +458,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 执行Hibernate Sql语句，只返回执行sql的结果，不做其他处理
 	 * 
-	 * @param queryStr
-	 *            查询sql语句
+	 * @param queryStr 查询sql语句
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
@@ -518,18 +469,15 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 执行Primitive Sql语句，主要用来执行原生sql语句，返回list数组列表
 	 * 
-	 * @param querysql
-	 *            查询sql语句
-	 * @param params
-	 *            参数
+	 * @param querysql 查询sql语句
+	 * @param params 参数
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List performPureSql(final String querysql, final Object... params) {
 		HibernateCallback callback = new HibernateCallback() {
-			public Object doInHibernate(Session session)
-					throws HibernateException {
+			public Object doInHibernate(Session session) throws HibernateException {
 				try {
 
 					SQLQuery sqlQuery = session.createSQLQuery(querysql);
@@ -554,23 +502,17 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 执行执行Primitive Sql语句，可以分页查询
 	 * 
-	 * @param querysql
-	 *            查询sql语句
-	 * @param startRow
-	 *            开始行
-	 * @param pageSize
-	 *            为0不做分页查询 每页数量
-	 * @param params
-	 *            参数
+	 * @param querysql 查询sql语句
+	 * @param startRow 开始行
+	 * @param pageSize 为0不做分页查询 每页数量
+	 * @param params 参数
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List findPageBySql(final String querysql, final Integer startRow,
-			final Integer pageSize, final Object... params) {
+	public List findPageBySql(final String querysql, final Integer startRow, final Integer pageSize, final Object... params) {
 		HibernateCallback callback = new HibernateCallback() {
-			public Object doInHibernate(Session session)
-					throws HibernateException {
+			public Object doInHibernate(Session session) throws HibernateException {
 				try {
 					SQLQuery sqlQuery = session.createSQLQuery(querysql);
 					// pageSize 不为0 时做分页查询
@@ -599,24 +541,17 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 执行执行Primitive Sql语句,对返回结果进行对象实体的映射，返回list对象实体列表
 	 * 
-	 * @param querysql
-	 *            查询sql
-	 * @param startRow
-	 *            开始行
-	 * @param pageSize
-	 *            为0不做分页查询 每页数量
-	 * @param params
-	 *            参数 下标从0开始
+	 * @param querysql 查询sql
+	 * @param startRow 开始行
+	 * @param pageSize 为0不做分页查询 每页数量
+	 * @param params 参数 下标从0开始
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List findModelPageBySql(final String querysql,
-			final Integer startRow, final Integer pageSize,
-			final Class className, final String alias, final Object... params) {
+	public List findModelPageBySql(final String querysql, final Integer startRow, final Integer pageSize, final Class className, final String alias, final Object... params) {
 		HibernateCallback callback = new HibernateCallback() {
-			public Object doInHibernate(Session session)
-					throws HibernateException {
+			public Object doInHibernate(Session session) throws HibernateException {
 				try {
 					SQLQuery sqlQuery = session.createSQLQuery(querysql);
 
@@ -643,8 +578,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 					return sqlQuery.list();
 				} catch (Exception e) {
 					e.printStackTrace();
-					throw new HibernateException(
-							"getPSqlModelList method error");
+					throw new HibernateException("getPSqlModelList method error");
 				}
 			}
 		};
@@ -654,10 +588,8 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 按条件统计总条数
 	 * 
-	 * @param sql
-	 *            查询语句
-	 * @param obj
-	 *            参数 Object... obj
+	 * @param sql 查询语句
+	 * @param obj 参数 Object... obj
 	 */
 	@Override
 	public Integer countBySql(final String sql, final Object... obj) {
@@ -667,17 +599,15 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 			if (StringUtils.isEmpty(sql)) {
 				throw new IllegalStateException("sql is null");
 			}
-			Object result = this.getHibernateTemplate().execute(
-					new HibernateCallback<Object>() {
-						public Object doInHibernate(Session session)
-								throws HibernateException, SQLException {
-							Query query = session.createSQLQuery(sql);
-							for (int i = 0; i < obj.length; i++) {
-								query.setParameter(i, obj[i]);
-							}
-							return query.uniqueResult();
-						}
-					});
+			Object result = this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+				public Object doInHibernate(Session session) throws HibernateException, SQLException {
+					Query query = session.createSQLQuery(sql);
+					for (int i = 0; i < obj.length; i++) {
+						query.setParameter(i, obj[i]);
+					}
+					return query.uniqueResult();
+				}
+			});
 			return ((BigInteger) result).intValue();
 		}
 	}
@@ -685,8 +615,7 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 	/**
 	 * 统计总条数
 	 * 
-	 * @param sql
-	 *            查询语句
+	 * @param sql 查询语句
 	 */
 	@Override
 	public Integer countSql(final String sql) {
@@ -695,13 +624,11 @@ public class HibernateDaoImpl extends HibernateDaoSupport implements
 		}
 
 		// 查询返回的是BigInteger
-		Object result = this.getHibernateTemplate().execute(
-				new HibernateCallback<Object>() {
-					public Object doInHibernate(Session session)
-							throws HibernateException, SQLException {
-						return session.createSQLQuery(sql).uniqueResult();
-					}
-				});
+		Object result = this.getHibernateTemplate().execute(new HibernateCallback<Object>() {
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				return session.createSQLQuery(sql).uniqueResult();
+			}
+		});
 		return ((BigInteger) result).intValue();
 	}
 

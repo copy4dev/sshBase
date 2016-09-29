@@ -6,7 +6,7 @@
 
 
 	<!-- http://localhost:8080/base/test/*.action -->
-	<package name="test" namespace="/test" extends="json-default,ss2h">
+	<package name="test" namespace="/test" extends="json-default,sshBase">
 
 		<action name="ssh_jump" class="com.copy4dev.sshBase.action.ssh.UserTestAction"
 			method="jump">
@@ -14,12 +14,12 @@
 		</action>
 
 		<!--josn测试 -->
-<!-- 		<action name="ss2h_josn" class="com.base.www.action.ss2h.SS2HAction" -->
-<!-- 			method="getJSON"> -->
-<!-- 			<result type="json"> -->
-<!-- 				<param name="root">jsonResult</param> -->
-<!-- 			</result> -->
-<!-- 		</action> -->
+		<action name="ssh_josn" class="com.copy4dev.sshBase.action.ssh.UserTestAction"
+			method="getJSON">
+			<result type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
 
 	</package>
 
