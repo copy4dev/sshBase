@@ -36,7 +36,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 			jsonResult = JSONObject.toJSON(userTest);
 			System.out.println("old: " + jsonResult);
 			// 数据源切换测试
-//			changeDB();
+			changeDB();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,7 +52,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 		DynamicDataSource.setCurrentLookupKey("2ndDataSource");
 
 		UserTest userTest = userTestService.findByName("admin");
-		System.out.println("json: " + JSONObject.toJSON(userTest).toString());
+		System.out.println("changeDB: " + JSONObject.toJSON(userTest).toString());
 
 		// 切换默认数据源defDataSource回来
 		DynamicDataSource.setCurrentLookupKey("defDataSource");

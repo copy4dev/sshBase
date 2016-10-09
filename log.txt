@@ -1,1 +1,2 @@
-关于service的注入存在问题
+1.关于service的注入存在问题 
+答:可以使用set/get,也可以使用@Autowired

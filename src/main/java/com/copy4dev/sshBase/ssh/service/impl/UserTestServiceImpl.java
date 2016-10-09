@@ -1,5 +1,3 @@
-
-
 package com.copy4dev.sshBase.ssh.service.impl;
 
 import java.io.Serializable;
@@ -37,7 +35,7 @@ public class UserTestServiceImpl implements IUserTestService {
 	}
 
 	// --- user define ---
-	
+
 	@Override
 	public UserTest findByName(String name) {
 		return userTestDao.findByName(name);
