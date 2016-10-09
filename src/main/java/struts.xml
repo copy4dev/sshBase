@@ -24,6 +24,6 @@
     </package>
 
     <!-- 引用子系统的Struts2的配置文件 -->
-    <include file="com/copy4dev/sshBase/action/ssh/struts-ssh.xml" />
+    <include file="com/copy4dev/sshBase/ssh/action/struts-ssh.xml" />
 
 </struts>  

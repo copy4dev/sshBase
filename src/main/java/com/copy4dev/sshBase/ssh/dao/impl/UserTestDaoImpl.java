@@ -1,9 +1,9 @@
-package com.copy4dev.sshBase.dao.impl.ssh;
+package com.copy4dev.sshBase.ssh.dao.impl;
 
-import com.copy4dev.sshBase.dao.impl.base.HibernateDaoImpl;
-import com.copy4dev.sshBase.dao.ssh.IUserTestDao;
+import com.copy4dev.sshBase.base.dao.impl.HibernateDaoImpl;
+import com.copy4dev.sshBase.ssh.dao.IUserTestDao;
+import com.copy4dev.sshBase.ssh.vo.UserTest;
 import com.copy4dev.sshBase.utils.StringUtils;
-import com.copy4dev.sshBase.vo.ssh.UserTest;
 
 public class UserTestDaoImpl extends HibernateDaoImpl implements IUserTestDao {
 

@@ -1,6 +1,6 @@
 
 
-package com.copy4dev.sshBase.dao.base;
+package com.copy4dev.sshBase.base.dao;
 
 import java.io.Serializable;
 import java.util.Collection;

@@ -77,7 +77,7 @@
 
     <aop:config>
         <!-- 如com.base.www.service.impl.manage.system.UserSErviceImpl -->
-        <aop:pointcut id="daoMethods" expression="execution(* com.copy4dev.sshBase.service.*.*.*.*.*(..))" />
+        <aop:pointcut id="daoMethods" expression="execution(* com.copy4dev.sshBase.*.service.*.*.*.*.*(..))" />
         <aop:advisor advice-ref="txadvice" pointcut-ref="daoMethods" />
     </aop:config>
 

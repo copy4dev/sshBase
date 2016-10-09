@@ -19,11 +19,11 @@
     <bean id="daoTemplate" abstract="true" lazy-init="true" p:sessionFactory-ref="sessionFactory" />
 
     <!-- 授权管理Dao -->
-    <bean id="hibernateDao" class="com.copy4dev.sshBase.dao.impl.base.HibernateDaoImpl" parent="daoTemplate">
+    <bean id="hibernateDao" class="com.copy4dev.sshBase.base.dao.impl.HibernateDaoImpl" parent="daoTemplate">
     </bean>
 
     <!-- 搭建测试 -->
-    <bean id="userTestDao" class="com.copy4dev.sshBase.dao.impl.ssh.UserTestDaoImpl" parent="daoTemplate">
+    <bean id="userTestDao" class="com.copy4dev.sshBase.ssh.dao.impl.UserTestDaoImpl" parent="daoTemplate">
     </bean>
 
 </beans>

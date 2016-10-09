@@ -1,10 +1,10 @@
-package com.copy4dev.sshBase.action.ssh;
+package com.copy4dev.sshBase.ssh.action;
 
 import com.alibaba.fastjson.JSONObject;
-import com.copy4dev.sshBase.action.base.BaseAction;
+import com.copy4dev.sshBase.base.action.BaseAction;
 import com.copy4dev.sshBase.db.DynamicDataSource;
-import com.copy4dev.sshBase.service.ssh.IUserTestService;
-import com.copy4dev.sshBase.vo.ssh.UserTest;
+import com.copy4dev.sshBase.ssh.service.IUserTestService;
+import com.copy4dev.sshBase.ssh.vo.UserTest;
 
 public class UserTestAction extends BaseAction<UserTest> {
 
@@ -34,8 +34,9 @@ public class UserTestAction extends BaseAction<UserTest> {
 		try {
 			UserTest userTest = userTestService.get(UserTest.class, 1);
 			jsonResult = JSONObject.toJSON(userTest);
+			System.out.println("old: " + jsonResult);
 			// 数据源切换测试
-			changeDB();
+//			changeDB();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

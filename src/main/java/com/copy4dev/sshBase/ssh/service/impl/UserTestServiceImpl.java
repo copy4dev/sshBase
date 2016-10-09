@@ -1,12 +1,12 @@
 
 
-package com.copy4dev.sshBase.service.impl.ssh;
+package com.copy4dev.sshBase.ssh.service.impl;
 
 import java.io.Serializable;
 
-import com.copy4dev.sshBase.dao.ssh.IUserTestDao;
-import com.copy4dev.sshBase.service.ssh.IUserTestService;
-import com.copy4dev.sshBase.vo.ssh.UserTest;
+import com.copy4dev.sshBase.ssh.dao.IUserTestDao;
+import com.copy4dev.sshBase.ssh.service.IUserTestService;
+import com.copy4dev.sshBase.ssh.vo.UserTest;
 
 public class UserTestServiceImpl implements IUserTestService {
 

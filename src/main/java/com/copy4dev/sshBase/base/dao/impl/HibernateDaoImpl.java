@@ -1,6 +1,6 @@
 
 
-package com.copy4dev.sshBase.dao.impl.base;
+package com.copy4dev.sshBase.base.dao.impl;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -21,7 +21,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
-import com.copy4dev.sshBase.dao.base.IHibernateDao;
+import com.copy4dev.sshBase.base.dao.IHibernateDao;
 
 /**
  * 

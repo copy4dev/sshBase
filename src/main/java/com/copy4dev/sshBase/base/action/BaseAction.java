@@ -1,4 +1,4 @@
-package com.copy4dev.sshBase.action.base;
+package com.copy4dev.sshBase.base.action;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

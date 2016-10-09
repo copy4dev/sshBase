@@ -1,6 +1,6 @@
 
 
-package com.copy4dev.sshBase.vo.ssh;
+package com.copy4dev.sshBase.ssh.vo;
 
 import java.io.Serializable;
 

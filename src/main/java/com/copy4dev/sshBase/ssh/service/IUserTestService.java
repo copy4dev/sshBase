@@ -1,9 +1,9 @@
 
 
-package com.copy4dev.sshBase.service.ssh;
+package com.copy4dev.sshBase.ssh.service;
 
-import com.copy4dev.sshBase.service.base.IBaseService;
-import com.copy4dev.sshBase.vo.ssh.UserTest;
+import com.copy4dev.sshBase.base.service.IBaseService;
+import com.copy4dev.sshBase.ssh.vo.UserTest;
 
 /**
  * 测试用的service接口

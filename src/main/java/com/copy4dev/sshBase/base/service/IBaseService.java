@@ -1,4 +1,4 @@
-package com.copy4dev.sshBase.service.base;
+package com.copy4dev.sshBase.base.service;
 
 import java.io.Serializable;
 

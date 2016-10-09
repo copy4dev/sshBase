@@ -15,7 +15,7 @@
         http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
     <!-- ss2h 搭建测试 -->
-    <bean id="userTestService" class="com.copy4dev.sshBase.service.impl.ssh.UserTestServiceImpl">
+    <bean id="userTestService" class="com.copy4dev.sshBase.ssh.service.impl.UserTestServiceImpl">
         <property name="userTestDao" ref="userTestDao"></property>
     </bean>
 
