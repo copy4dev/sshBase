@@ -3,6 +3,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     version="2.5">
     <display-name>sshBase</display-name>
+    
+    <!-- 配置log4j -->
+    <listener>
+        <listener-class>com.copy4dev.sshBase.utils.ProjectDirListener</listener-class>
+    </listener>
 
     <!-- 配置spring -->
     <listener>

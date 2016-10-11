@@ -1,5 +1,7 @@
 package com.copy4dev.sshBase.ssh.action;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSONObject;
 import com.copy4dev.sshBase.base.action.BaseAction;
 import com.copy4dev.sshBase.db.DynamicDataSource;
@@ -13,6 +15,8 @@ public class UserTestAction extends BaseAction<UserTest> {
 	 */
 	private static final long serialVersionUID = -671660989292087304L;
 
+	private static final Logger LOG = Logger.getLogger(UserTestAction.class);
+
 	private IUserTestService userTestService;
 
 	/**
@@ -21,6 +25,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 	 * @return
 	 */
 	public String jump() {
+		LOG.warn("success");
 		return SUCCESS;
 	}
 
