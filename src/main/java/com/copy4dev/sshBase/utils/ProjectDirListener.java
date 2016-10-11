@@ -13,7 +13,7 @@ import javax.servlet.ServletContextListener;
 public class ProjectDirListener implements ServletContextListener {
 
 	public static final String PROJECT_DIR_KEY = "projectDir";
-
+	
 	public void contextDestroyed(ServletContextEvent servletcontextevent) {
 		System.getProperties().remove(PROJECT_DIR_KEY);
 	}

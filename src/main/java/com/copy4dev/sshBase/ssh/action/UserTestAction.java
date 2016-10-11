@@ -7,6 +7,7 @@ import com.copy4dev.sshBase.base.action.BaseAction;
 import com.copy4dev.sshBase.db.DynamicDataSource;
 import com.copy4dev.sshBase.ssh.service.IUserTestService;
 import com.copy4dev.sshBase.ssh.vo.UserTest;
+import com.copy4dev.sshBase.utils.ProjectDirListener;
 
 public class UserTestAction extends BaseAction<UserTest> {
 
@@ -25,7 +26,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 	 * @return
 	 */
 	public String jump() {
-		LOG.warn("success");
+		LOG.warn("日志及缓存保存点" + System.getProperties().getProperty(ProjectDirListener.PROJECT_DIR_KEY));
 		return SUCCESS;
 	}
 
