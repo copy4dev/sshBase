@@ -35,6 +35,7 @@ public class UserTestAction extends BaseAction<UserTest> {
 			UserTest userTest = userTestService.get(UserTest.class, 1);
 			jsonResult = JSONObject.toJSON(userTest);
 			System.out.println("old: " + jsonResult);
+			System.out.println("${web:rootDir}");
 			// 数据源切换测试
 			changeDB();
 		} catch (Exception e) {

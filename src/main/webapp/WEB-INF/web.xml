@@ -3,6 +3,11 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     version="2.5">
     <display-name>sshBase</display-name>
+    
+    <context-param>  
+        <param-name>log4jDir</param-name>    
+        <param-value>/logs/</param-value>    
+    </context-param>   
 
     <!-- 配置spring -->
     <listener>
