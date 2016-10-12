@@ -4,23 +4,32 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
+    <!-- http://localhost:8080/base/test/*.action -->
+    <package name="test" namespace="/test" extends="json-default,sshBase">
 
-	<!-- http://localhost:8080/base/test/*.action -->
-	<package name="test" namespace="/test" extends="json-default,sshBase">
+        <!-- 页面跳转测试 -->
+        <action name="ssh_jump" class="com.copy4dev.sshBase.ssh.action.UserTestAction"
+            method="jump">
+            <result>/index.jsp</result>
+        </action>
 
-		<action name="ssh_jump" class="com.copy4dev.sshBase.ssh.action.UserTestAction"
-			method="jump">
-			<result>/index.jsp</result>
-		</action>
+        <!--josn测试 -->
+        <action name="ssh_json" class="com.copy4dev.sshBase.ssh.action.UserTestAction"
+            method="getJSON">
+            <result type="json">
+                <param name="root">jsonResult</param>
+            </result>
+        </action>
 
-		<!--josn测试 -->
-		<action name="ssh_json" class="com.copy4dev.sshBase.ssh.action.UserTestAction"
-			method="getJSON">
-			<result type="json">
-				<param name="root">jsonResult</param>
-			</result>
-		</action>
+        <action name="file_download" class="com.copy4dev.sshBase.ssh.action.FileLoadAction">
+            <result name="success" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>
+                <param name="inputName">downloadFile</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
 
-	</package>
+    </package>
 
 </struts>
